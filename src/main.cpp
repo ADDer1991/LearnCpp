@@ -39,11 +39,18 @@ void json_rd_test(void)
     
 }
 
+void syscmd(string str)
+{
+    cout << endl << str <<endl;
+    system(str.c_str());
+}
+
 void system_cmd_test(void)
 {
     string filename = "system_cmd_test.txt";
     string filepath = "../test/";
     string file     = filepath + filename;
+    string cmd;
     ofstream ofs(file);
     if(!ofs.is_open())
     {
@@ -53,11 +60,19 @@ void system_cmd_test(void)
     ofs << "hello world" << endl;
     ofs.close();
     
-    system("ls -l ../test/");
-    string cmd = "find " + filepath + " -type f -mtime -2 -exec rm {} \\;";   //查找 ./test/ 文件夹下修改时间为2天内的文件并删除
-    cout << cmd << endl;
-    system(cmd.c_str());
-    system("ls -l ../test/");
+    syscmd("ls -l " + filepath);
+    syscmd("stat " + file);
+
+    cmd = "touch -d \"3 day ago\" " + file;  //将文件时间设置为3天前
+    syscmd(cmd);
+    syscmd("stat " + file);
+
+    // 查找 filepath 文件夹下修改时间为 date天 内(外)的文件并删除
+    int date = 2;
+    string str_date = (date > 0) ? ("+" + to_string(date)) : to_string(date);
+    cmd = "find " + filepath + " -type f -mtime " + str_date + " -exec rm {} \\;";   
+    syscmd(cmd);
+    syscmd("ls -l " + filepath);
 }
 
 int main(int argc, char **argv)
