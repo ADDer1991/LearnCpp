@@ -81,6 +81,7 @@ int main(int argc, char **argv)
     cout << "This is project: LearnCpp." << endl;
     //json_rd_test();
     //system_cmd_test();
-    glfw_main();
+    //glfw_main();
+    glfw_example_triangle();
     return 0;
 }

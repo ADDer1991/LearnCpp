@@ -6,6 +6,7 @@ project(LearnCpp)
 
 #compile flags
 set(CMAKE_CXX_FLAGS "-fPIC -ffast-math -pthread -fopenmp -g -std=c++11 -Wformat")
+set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -std=c99")
 
 #include files
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include/)
