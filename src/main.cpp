@@ -3,6 +3,7 @@
 #include <fstream>
 #include "json.h"
 #include "reader.h"
+#include "glfw_ui.h"
 
 using namespace std;
 
@@ -79,6 +80,7 @@ int main(int argc, char **argv)
 {
     cout << "This is project: LearnCpp." << endl;
     //json_rd_test();
-    system_cmd_test();
+    //system_cmd_test();
+    glfw_main();
     return 0;
 }

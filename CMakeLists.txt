@@ -8,7 +8,10 @@ project(LearnCpp)
 set(CMAKE_CXX_FLAGS "-fPIC -ffast-math -pthread -fopenmp -g -std=c++11 -Wformat")
 
 #include files
+include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include/)
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include/json/)
+include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include/glfw/GLFW/)
+include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include/glfw/deps/)
 
 #lib files
 set(CMKAE_LIBRARY_PATH "./lib")
@@ -21,4 +24,4 @@ aux_source_directory(${CMAKE_CURRENT_SOURCE_DIR}/src SRC_LIST)
 set(TARGET LearnCpp)
 add_executable(${TARGET} ${SRC_LIST})
 
-target_link_libraries(${TARGET} jsoncpp)
+target_link_libraries(${TARGET} jsoncpp glfw3 X11 GL dl)

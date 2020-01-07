@@ -1,0 +1,1 @@
+extern int glfw_main(void);
