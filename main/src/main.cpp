@@ -1,7 +1,7 @@
 #include <iostream>
 #include <string>
 #include <fstream>
-#include "json/json.h"
+#include "json.h"
 #include "reader.h"
 #include "glfw_ui.h"
 #include "main.h"
