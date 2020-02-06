@@ -5,6 +5,8 @@
 #include "reader.h"
 #include "glfw_ui.h"
 #include "main.h"
+#include "common.h"
+#include "grammar.h"
 
 using namespace std;
 
@@ -80,10 +82,12 @@ void system_cmd_test(void)
 int main(int argc, char **argv)
 {
     cout << "This is project: LearnCpp." << endl;
+    grammar gram;
     //json_rd_test();
     //system_cmd_test();
     //glfw_main();
     //glfw_example_triangle();
-    imgui_glfw_opengl3_emample_main();
+    //imgui_glfw_opengl3_emample_main();
+    gram.test();
     return 0;
 }

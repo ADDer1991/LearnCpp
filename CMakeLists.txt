@@ -24,13 +24,18 @@ link_directories(${CMAKE_CURRENT_SOURCE_DIR}/gl/lib/)
 aux_source_directory(${CMAKE_CURRENT_SOURCE_DIR}/gl/src/ SRC_GL)
 aux_source_directory(${CMAKE_CURRENT_SOURCE_DIR}/gl/src/imgui/ SRC_IMGUI)
 
+# common
+include_directories(${CMAKE_CURRENT_SOURCE_DIR}/common/include/)
+aux_source_directory(${CMAKE_CURRENT_SOURCE_DIR}/common/src/ SRC_COMMON)
+add_library(common SHARED ${SRC_COMMON})
+
 # main
 aux_source_directory(${CMAKE_CURRENT_SOURCE_DIR}/main/src SRC_MAIN)
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/main/include/)
 
 # executable file
 set(TARGET LearnCpp)
-add_executable(${TARGET} ${SRC_MAIN} ${SRC_GL} ${SRC_IMGUI})
+add_executable(${TARGET} ${SRC_MAIN} ${SRC_GL} ${SRC_IMGUI} ${SRC_COMMON})
 
 # lib link
 target_link_libraries(${TARGET} jsoncpp glfw3 X11 GL dl)
