@@ -29,6 +29,10 @@ include_directories(${CMAKE_CURRENT_SOURCE_DIR}/common/include/)
 aux_source_directory(${CMAKE_CURRENT_SOURCE_DIR}/common/src/ SRC_COMMON)
 add_library(common SHARED ${SRC_COMMON})
 
+# log
+include_directories(${CMAKE_CURRENT_SOURCE_DIR}/log/glog/include/)
+link_directories(${CMAKE_CURRENT_SOURCE_DIR}/log/glog/lib/)
+
 # main
 aux_source_directory(${CMAKE_CURRENT_SOURCE_DIR}/main/src SRC_MAIN)
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/main/include/)
@@ -38,4 +42,4 @@ set(TARGET LearnCpp)
 add_executable(${TARGET} ${SRC_MAIN} ${SRC_GL} ${SRC_IMGUI} ${SRC_COMMON})
 
 # lib link
-target_link_libraries(${TARGET} jsoncpp glfw3 X11 GL dl)
+target_link_libraries(${TARGET} jsoncpp glfw3 X11 GL dl glog)

@@ -7,6 +7,9 @@
 #include "main.h"
 #include "common.h"
 #include "grammar.h"
+#include "glog/logging.h"
+#include "unistd.h"
+#include "sys/stat.h"
 
 using namespace std;
 
@@ -81,7 +84,27 @@ void system_cmd_test(void)
 
 int main(int argc, char **argv)
 {
-    cout << "This is project: LearnCpp." << endl;
+    /* glog init */
+    google::InitGoogleLogging(argv[0]);
+    google::InstallFailureSignalHandler();
+    //google::InstallFailureWriter(&ProcessSignal);
+    string glog_dir = "./log/";
+	string glog_info = glog_dir + "INFO_";
+	google::SetLogDestination(google::INFO, glog_info.c_str());
+	string glog_warning = glog_dir + "WARNING_";
+	google::SetLogDestination(google::WARNING, glog_warning.c_str());
+	string glog_error = glog_dir + "ERROR_";
+	google::SetLogDestination(google::ERROR, glog_error.c_str());
+	string glog_fatal = glog_dir + "FATAL_";
+	google::SetLogDestination(google::FATAL, glog_fatal.c_str());
+
+    if(0 != access(glog_dir.c_str(), F_OK))
+    {
+        mkdir(glog_dir.c_str(), 0777);
+    }
+    LOG(INFO) << "This is project: LearnCpp.";
+    LOG(INFO) << "function main.";
+
     grammar gram;
     //json_rd_test();
     //system_cmd_test();
